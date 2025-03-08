@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Level</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: yellow;
+            margin: 0;
+            padding: 0;
+            transition: background 0.3s, color 0.3s;
+        }
+        .container {
+            width: 400px;
+            margin: 100px auto;
+            background: lightyellow;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+            border: 2px solid black;
+        }
+        h1 {
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+        }
+        .btn {
+            display: block;
+            width: 80%;
+            padding: 10px;
+            margin: 10px auto;
+            border: none;
+            background: olive;
+            color: black;
+            font-size: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .back {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 15px;
+            background: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        /* Dark mode styles */
+        .dark-mode {
+            background-color: #222;
+            color: white;
+        }
+        .dark-mode .container {
+            background: #444;
+        }
+        .dark-mode .btn {
+            background: #666;
+            color: white;
+        }
+        body.dark-mode button:hover {
+            background-color: #555;
+        }
+        #dark-mode-toggle {
+            padding: 8px 12px;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            background-color: white;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        body.dark-mode #dark-mode-toggle {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <button id="dark-mode-toggle">🌙 / ☀️</button>
+
+    <button class="back" onclick="goBack()">Back</button>
+    <h1>Select Difficulty Level</h1>
+    <div class="container">
+        <button class="btn" onclick="startGame('easy')">Easy</button>
+        <button class="btn" onclick="startGame('medium')">Medium</button>
+        <button class="btn" onclick="startGame('hard')">Hard</button>
+    </div>
+
+    <script>
+        function toggleMode() {
+            document.body.classList.toggle("dark-mode");
+            let modeBtn = document.querySelector(".toggle-mode");
+            if (document.body.classList.contains("dark-mode")) {
+                modeBtn.textContent = "Light Mode";
+            } else {
+                modeBtn.textContent = "Dark Mode";
+            }
+        }
+    </script>
+
+    <script>
+        function goBack() {
+            window.location.href = "{{ url_for('game') }}";  // Redirect to the game page
+        }
+
+        function startGame(level) {
+            alert('You selected ' + level + ' level!');
+            window.location.href = "{{ url_for('play', level='') }}" + level; // Correctly passing level
+        }
+
+        function toggleMode() {
+            document.body.classList.toggle("dark-mode");
+        }
+    </script>
+     <script src="{{ url_for('static', filename='js/darkmode.js') }}"></script>
+</body>
+</html>

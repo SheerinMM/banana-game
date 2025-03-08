@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banana Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            display: flex;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 800px;
+        }
+        .left-section {
+            flex: 2;
+            text-align: center;
+            padding-right: 20px;
+        }
+        .right-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        img {
+            max-width: 100%;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+        }
+        input {
+            padding: 10px;
+            margin-top: 10px;
+            width: 80%;
+        }
+        button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .submit-btn {
+            background: #28a745;
+            color: white;
+        }
+        .next-btn {
+            background: #6c757d;
+            color: white;
+        }
+        .reset-btn {
+            margin-top: 20px;
+            background: red;
+            color: white;
+        }
+        .hearts {
+            margin-top: 10px;
+        }
+        .hearts span {
+            color: red;
+            font-size: 24px;
+        }
+        .logs {
+            margin-top: 20px;
+            width: 100%;
+            background: #eef;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: left;
+        }
+        .back {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 15px;
+            background: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+   
+    <button class="back" onclick="goBack()">Back</button>
+    <div class="container">
+        <div class="left-section">
+            <h2>Hello {{ username }}, welcome to Banana Game!</h2>
+            <img id="question-img" src="" alt="Question Image">
+
+            <br>
+            <button class="reset-btn" onclick="resetGame()">🔄 Reset</button>
+        </div>
+
+        <div class="right-section">
+            <h3>Your Answer</h3>
+            <input type="hidden" id="question_id" name="question_id">
+
+            <input type="text" id="answer" name="answer" placeholder="Enter your guess">
+            <button class="submit-btn" type="button" onclick="submitAnswer()">Submit</button>
+            
+            <button class="next-btn" onclick="nextQuestion()">Next</button>
+
+            <h3>Time Taken: <span id="timer">00:00</span></h3>
+
+            <div class="hearts" id="lives">
+                ❤️ ❤️ ❤️
+            </div>
+
+            <div class="logs">
+                <h4>Logs</h4>
+                <p id="log-messages">No logs yet.</p>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script>
+        function goBack() {
+            window.location.href = "{{ url_for('level') }}"; 
+        }
+        document.getElementById("dark-mode-toggle").addEventListener("click", function() {
+            document.body.classList.toggle("dark-mode");
+        });
+    </script>
+    <script src="{{ url_for('static', filename='js/game.js') }}"></script>
+</body>
+</html>
