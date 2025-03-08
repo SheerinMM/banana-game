@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Score Board</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: yellow; }
+        .container { max-width: 600px; margin: 50px auto; background: #fff; padding: 20px; border-radius: 10px; }
+        h1 { color: #333; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #333; padding: 10px; }
+        th { background-color: #333; color: white; }
+        .back-btn { margin-top: 20px; padding: 10px 20px; background: red; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Score Board</h1>
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Score</th>
+            </tr>
+            {% for score in user_scores %}
+            <tr>
+                <td>{{ score.date }}</td>
+                <td>{{ score.score }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <button class="back-btn" onclick="window.location.href='{{ url_for('game') }}'">Back to Game</button>
+    </div>
+</body>
+</html>
