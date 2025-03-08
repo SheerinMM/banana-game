@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+</head>
+<body>
+    <div class="signup-container">
+        <h1>Sign Up</h1>
+       
+
+            <form method="POST" action="{{ url_for('signup') }}">
+                
+
+                <label for="email">UserName:</label>
+                <input type="text" name="username" placeholder="Enter Username" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <!-- Password -->
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                
+              
+                
+            <button type="submit">Sign Up</button>
+        </form>
+        <!-- Display messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+    {% for category, message in messages %}
+        <div class="flash-message {{ category }}">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+{% endwith %}
+        <div class="login-link">
+            <p>Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+        </div>
+      
+      <div class="back-home">
+        <a href="{{ url_for('home') }}">← Back to Home</a>
+    </div>
+    
+    </div>
+</body>
+</html>

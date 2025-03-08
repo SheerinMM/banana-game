@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Quizz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: yellow;
+            margin: 0;
+            padding: 0;
+            transition: background 0.3s, color 0.3s;
+        }
+        .container {
+            width: 400px;
+            margin: 100px auto;
+            background: lightyellow;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+            border: 2px solid black;
+        }
+        h1 {
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+        }
+        .btn {
+            display: block;
+            width: 80%;
+            padding: 10px;
+            margin: 10px auto;
+            border: none;
+            background: olive;
+            color: black;
+            font-size: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .logout {
+            position: absolute;
+            top: 20px;
+            right: 100px;
+            background: red;
+            color: black;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+        .toggle-mode {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            background: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        /* Dark mode styles */
+        .dark-mode {
+            background-color: #222;
+            color: white;
+        }
+        .dark-mode .container {
+            background: #444;
+        }
+        .dark-mode .btn {
+            background: #666;
+            color: white;
+        }
+        .dark-mode .logout {
+            background: darkred;
+        }
+        .dark-mode .toggle-mode {
+            background: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <button class="toggle-mode" onclick="toggleMode()">Dark Mode</button>
+    <button class="logout">LOGOUT</button>
+    <h1>MATH QUIZZ</h1>
+    <div class="container">
+        <h2>LETS PLAY</h2>
+        <button class="btn">PLAY</button>
+        <button class="btn">SCORE</button>
+        <button class="btn">LEADERBOARD</button>
+    </div>
+    <script>
+        function toggleMode() {
+            document.body.classList.toggle("dark-mode");
+            let modeBtn = document.querySelector(".toggle-mode");
+            if (document.body.classList.contains("dark-mode")) {
+                modeBtn.textContent = "Light Mode";
+            } else {
+                modeBtn.textContent = "Dark Mode";
+            }
+        }
+    </script>
+</body>
+</html>
